@@ -1,0 +1,845 @@
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --surface-strong: #fdfbf7;
+  --ink: #1d2428;
+  --muted: #637076;
+  --line: #d9d2c6;
+  --accent: #1f6f5b;
+  --accent-dark: #145345;
+  --amber: #b46b12;
+  --danger: #b3403a;
+  --danger-bg: #fff0ef;
+  --shadow: 0 14px 30px rgba(43, 38, 32, 0.08);
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 84px;
+  padding: 14px clamp(16px, 4vw, 40px);
+  background: rgba(253, 251, 247, 0.96);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.45rem;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 1.1rem;
+}
+
+.save-status,
+.subtle {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  gap: 22px;
+  padding: 22px clamp(16px, 4vw, 40px) 40px;
+}
+
+.employees-panel,
+.roster-panel,
+.week-section {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.employees-panel,
+.roster-panel {
+  border-radius: 8px;
+}
+
+.employees-panel {
+  align-self: start;
+  padding: 18px;
+}
+
+.roster-panel {
+  min-width: 0;
+  padding: 18px;
+}
+
+.side-menu {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.side-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 14px;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: left;
+  background: var(--surface-strong);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.side-menu-item:hover {
+  border-color: var(--accent);
+}
+
+.side-menu-item span:first-child {
+  flex: 1 1 auto;
+}
+
+.side-menu-count {
+  min-width: 24px;
+  padding: 2px 8px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: center;
+  background: var(--bg);
+  border-radius: 999px;
+}
+
+.side-menu-chevron {
+  color: var(--muted);
+  font-size: 1.2rem;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(29, 36, 40, 0.45);
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 480px;
+  max-height: min(800px, 100%);
+  background: var(--surface);
+  border-radius: 10px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+}
+
+.modal-large {
+  max-width: 900px;
+  max-height: min(860px, 100%);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.modal-close {
+  min-height: 32px;
+  min-width: 32px;
+  padding: 0;
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.modal-body {
+  padding: 18px;
+  overflow-y: auto;
+}
+
+.section-heading,
+.rosters-heading,
+.week-toolbar,
+.employee-card-main,
+.employee-actions,
+.header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.rosters-heading {
+  margin-bottom: 16px;
+}
+
+.employee-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+label,
+legend {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+input[type='text'],
+input[type='number'],
+input[type='date'] {
+  display: block;
+  width: 100%;
+  min-height: 42px;
+  margin-top: 6px;
+  padding: 9px 10px;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid #c9c1b6;
+  border-radius: 6px;
+}
+
+input:focus {
+  outline: 3px solid rgba(31, 111, 91, 0.18);
+  border-color: var(--accent);
+}
+
+.days-fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.day-toggles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+  margin-top: 8px;
+}
+
+.priority-toggles {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.day-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0 8px;
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: none;
+  border: 1px solid #c9c1b6;
+  border-radius: 6px;
+  background: var(--surface-strong);
+  cursor: pointer;
+  user-select: none;
+}
+
+.day-toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.day-toggle:has(input:checked) {
+  color: #ffffff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.button {
+  min-height: 38px;
+  padding: 0 13px;
+  color: var(--ink);
+  font-weight: 700;
+  border: 1px solid #bdb5aa;
+  border-radius: 6px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.button:hover {
+  border-color: var(--accent);
+}
+
+.button.primary,
+.button.generate-week {
+  color: #ffffff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.button.primary:hover,
+.button.generate-week:hover {
+  background: var(--accent-dark);
+}
+
+.button.danger {
+  color: var(--danger);
+  background: var(--danger-bg);
+  border-color: #e2aaa6;
+}
+
+.button.save-week {
+  color: #ffffff;
+  background: var(--amber);
+  border-color: var(--amber);
+}
+
+.button.save-week:hover {
+  background: #8f5309;
+}
+
+.button:disabled {
+  color: var(--muted);
+  background: var(--surface-strong);
+  border-color: var(--line);
+  cursor: not-allowed;
+}
+
+.button.full-width {
+  width: 100%;
+}
+
+.saved-badge {
+  padding: 3px 9px;
+  margin-bottom: 8px;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--amber);
+  border-radius: 999px;
+}
+
+.employee-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.shop-hours-list {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 18px;
+}
+
+.shop-hours-row {
+  display: grid;
+  grid-template-columns: 40px auto 1fr 1fr;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 12px;
+  background: var(--surface-strong);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.shop-hours-day {
+  font-weight: 700;
+}
+
+.shop-hours-closed-toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  text-transform: none;
+  font-size: 0.82rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.shop-hours-row .compact-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+}
+
+.shop-hours-row input[type='time'] {
+  min-height: 38px;
+  margin: 0;
+  padding: 7px 8px;
+  color: var(--ink);
+  background: #ffffff;
+  border: 1px solid #c9c1b6;
+  border-radius: 6px;
+}
+
+.shop-hours-row input[type='time']:focus {
+  outline: 3px solid rgba(31, 111, 91, 0.18);
+  border-color: var(--accent);
+}
+
+.shop-hours-row input[type='time']:disabled {
+  color: var(--muted);
+  background: var(--bg);
+  border-color: var(--line);
+}
+
+.shop-hours-closed-toggle input {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.empty-state {
+  padding: 18px;
+  color: var(--muted);
+  background: var(--surface-strong);
+  border: 1px dashed #c9c1b6;
+  border-radius: 8px;
+}
+
+.employee-card {
+  display: grid;
+  gap: 12px;
+  padding: 12px;
+  background: var(--surface-strong);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.employee-card-main {
+  align-items: end;
+}
+
+.employee-edit-name {
+  flex: 1 1 auto;
+}
+
+.compact-label {
+  flex: 0 0 96px;
+}
+
+.days-fieldset.compact .day-toggles {
+  grid-template-columns: repeat(7, minmax(34px, 1fr));
+}
+
+.days-fieldset.compact .priority-toggles {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.days-fieldset.compact .day-toggle {
+  min-height: 30px;
+  padding: 0 4px;
+}
+
+.week-section {
+  margin-bottom: 18px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.week-toolbar {
+  align-items: end;
+  padding: 14px;
+  background: var(--surface-strong);
+  border-bottom: 1px solid var(--line);
+}
+
+.week-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.week-total {
+  color: var(--accent-dark);
+}
+
+.week-nav-button {
+  min-height: 34px;
+  min-width: 34px;
+  padding: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.week-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.roster-table {
+  width: 100%;
+  min-width: 1350px;
+  border-collapse: collapse;
+}
+
+.roster-table th,
+.roster-table td {
+  padding: 9px 8px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.roster-table th {
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  background: #fbfaf7;
+}
+
+.header-subtitle {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.7rem;
+  text-transform: none;
+  font-weight: 400;
+}
+
+.roster-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.employee-name-cell {
+  width: 170px;
+  font-weight: 700;
+}
+
+.day-cell {
+  width: auto;
+}
+
+.time-range {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.time-input {
+  width: auto;
+  min-height: 36px;
+  margin: 0;
+  padding: 6px 6px;
+}
+
+.time-sep {
+  color: var(--muted);
+}
+
+.off-day .time-input {
+  background: #f1eee8;
+}
+
+.closed-note {
+  text-align: center;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+th.understaffed,
+td.understaffed {
+  background: var(--danger-bg);
+}
+
+th.understaffed {
+  color: var(--danger);
+}
+
+.coverage-note {
+  margin: 10px 0 0;
+  color: var(--danger);
+  font-size: 0.85rem;
+}
+
+.cleared-row {
+  background: #fff8ec;
+}
+
+.total-cell {
+  min-width: 100px;
+  text-align: center;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.total-cell.over,
+.total-cell.under {
+  color: var(--amber);
+}
+
+.total-cell.match {
+  color: var(--accent-dark);
+}
+
+.row-employee-head {
+  text-align: left;
+}
+
+.row-actions-head {
+  text-align: center;
+  width: 90px; /* Auto width */
+}
+
+.row-total-head {
+  width: 90px;
+}
+
+.row-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.row-actions .button {
+  box-sizing: border-box;
+  width: 76px;
+  min-height: 26px;
+  padding: 0 8px;
+  font-size: 0.78rem;
+}
+
+.print-only {
+  display: none;
+}
+
+.print-page-header {
+  display: none;
+}
+
+@media (max-width: 920px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .app-header {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .app-header {
+    flex-direction: column;
+  }
+
+  .header-actions,
+  .header-actions .button,
+  .rosters-heading .button {
+    width: 100%;
+  }
+
+  .employee-card-main,
+  .week-toolbar,
+  .rosters-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .compact-label {
+    flex-basis: auto;
+  }
+
+  .day-toggles,
+  .days-fieldset.compact .day-toggles {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media print {
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-strong: #ffffff;
+    --ink: #000000;
+    --muted: #333333;
+    --line: #9b9b9b;
+  }
+
+  body {
+    background: #ffffff;
+    font-size: 11pt;
+  }
+
+  .no-print,
+  .app-header,
+  .employees-panel,
+  .row-actions,
+  .save-status,
+  .saved-badge {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block;
+  }
+
+  .print-page-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #000000;
+  }
+
+  .print-page-header .logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+
+  .print-page-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .app-shell {
+    display: block;
+    padding: 0;
+  }
+
+  .roster-panel,
+  .week-section {
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .week-section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin: 0 0 24px;
+  }
+
+  .weeks-container > .week-section:not(:first-child) {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  .week-toolbar {
+    padding: 0 0 8px;
+    border-bottom: 1px solid #000000;
+  }
+
+  .table-wrap {
+    overflow: visible;
+  }
+
+  .roster-table {
+    min-width: 0;
+    width: 100%;
+    margin-bottom: 16px;
+    /* table-layout: fixed forced every column (including the long
+       "HH:MM – HH:MM" shift columns) to the same narrow width on a portrait
+       page, so the time text overflowed into the next cell. Auto layout
+       lets columns size to their actual content instead. */
+    table-layout: auto;
+    font-size: 8.5pt;
+    /* border-collapse breaks tr { break-inside: avoid } in Chromium's print
+       engine, causing the last row on a page to be sliced in half instead
+       of pushed whole to the next page — separate borders avoid that bug. */
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .roster-table tr {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .roster-table thead {
+    display: table-header-group;
+  }
+
+  .roster-table th,
+  .roster-table td {
+    padding: 5px 4px;
+    border: 1px solid #777777;
+  }
+
+  /* Screen uses border-collapse: collapse, where the last row skips its own
+     bottom border since the table's outer edge already covers it. Print
+     switches to border-collapse: separate (see above), where every cell
+     draws its own full border — so that skip must be undone here, or the
+     table's closing edge is missing. */
+  .roster-table tbody tr:last-child td {
+    border-bottom: 1px solid #777777;
+  }
+
+  .time-range-print {
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .closed-note {
+    font-size: 0.6rem;
+  }
+
+  .cleared-row {
+    background: #ffffff;
+  }
+}

@@ -1,0 +1,14 @@
+# This is an example configuration file
+# To learn more, see the full config.yaml reference: https://docs.continue.dev/reference
+
+name: Qwen2.5-Coder 14B Instruct
+version: 1.0.0
+schema: v1
+
+# Define which models can be used
+# https://docs.continue.dev/customization/models
+models:
+  - name: Qwen2.5-Coder-14B
+    provider: openai
+    model: qwen2.5-coder-14b-instruct
+    apiBase: http://localhost:1234/v1
