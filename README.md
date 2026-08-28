@@ -24,4 +24,4 @@ npm run build    # type-check + production build to dist/
 
 ## GitHub Pages
 
-A GitHub Actions workflow (`.github/workflows/deploy.yml`) builds the app and deploys `dist/` via GitHub Pages on every push to `main`. Enable Pages for the repo with source "GitHub Actions" — no build output is committed to the repo.
+A GitHub Actions workflow (`.github/workflows/deploy.yml`) builds the app and deploys `dist/` via GitHub Pages on every push to `master`. Enable Pages for the repo with source "GitHub Actions" — no build output is committed to the repo.
